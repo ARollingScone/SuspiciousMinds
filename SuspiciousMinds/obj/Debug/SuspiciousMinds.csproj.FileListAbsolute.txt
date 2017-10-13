@@ -1,0 +1,15 @@
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\SuspiciousMinds.exe.config
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\SuspiciousMinds.exe
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\SuspiciousMinds.pdb
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\sfmlnet-audio-2.dll
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\sfmlnet-graphics-2.dll
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\sfmlnet-window-2.dll
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\obj\Debug\SuspiciousMinds.csprojResolveAssemblyReference.cache
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\obj\Debug\SuspiciousMinds.csproj.CoreCompileInputs.cache
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\obj\Debug\SuspiciousMinds.exe
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\obj\Debug\SuspiciousMinds.pdb
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\csfml-audio-2.dll
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\csfml-graphics-2.dll
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\csfml-network-2.dll
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\csfml-system-2.dll
+C:\Users\Thebb\source\repos\SuspiciousMinds\SuspiciousMinds\bin\Debug\csfml-window-2.dll
