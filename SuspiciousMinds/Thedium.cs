@@ -1,4 +1,5 @@
 ﻿using SuspiciousMinds.Base;
+using SuspiciousMinds.Base.Interfaces;
 using System;
 
 namespace SuspiciousMinds
@@ -88,7 +89,7 @@ namespace SuspiciousMinds
 
             foreach (var entity in m_container.Entities)
             {
-                entity.GetComponent<DisplayComponent>()?.Draw(m_windowContainer.Window);
+                entity.GetComponent<IDisplayComponent>()?.Draw(m_windowContainer.Window);
             }
 
             m_windowContainer.Window.Display();
