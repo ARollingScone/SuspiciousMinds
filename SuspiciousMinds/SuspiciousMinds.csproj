@@ -77,10 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\DisplayComponent.cs" />
     <Compile Include="Base\Entity.cs" />
     <Compile Include="Base\InputComponent.cs" />
+    <Compile Include="Base\Interfaces\IDisplayComponent.cs" />
     <Compile Include="Base\PhysicsComponent.cs" />
+    <Compile Include="Base\Player\PixelGrid.cs" />
+    <Compile Include="Base\Player\PixelGridDisplay.cs" />
     <Compile Include="EntityContainer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

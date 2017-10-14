@@ -1,4 +1,7 @@
-﻿using SuspiciousMinds.Base;
+﻿using SFML.Graphics;
+using SuspiciousMinds.Base;
+using SuspiciousMinds.Base.Interfaces;
+using SuspiciousMinds.Base.Player;
 using System.Collections.Generic;
 
 namespace SuspiciousMinds
@@ -15,16 +18,19 @@ namespace SuspiciousMinds
         private Entity CreatePlayer()
         {
             var entity = new Entity();
-            var display = new DisplayComponent();
+
             var physics = new PhysicsComponent();
             var input = new InputComponent();
 
+            var display = new PixelGridDisplay(
+                new PixelGrid(Color.Green), 
+                physics);
+
             input.SetPhysics(physics);
-            display.SetPhysics(physics);
 
             entity.Components.Add(typeof(PhysicsComponent), physics);
             entity.Components.Add(typeof(InputComponent), input);
-            entity.Components.Add(typeof(DisplayComponent), display);
+            entity.Components.Add(typeof(IDisplayComponent), display);
 
             return entity;
         }
