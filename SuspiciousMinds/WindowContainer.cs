@@ -10,6 +10,7 @@ namespace SuspiciousMinds
         public WindowContainer()
         {
             Window = new RenderWindow(new VideoMode(640, 480), "Window");
+            Window.SetMouseCursorVisible(false);
         }
     }
 }

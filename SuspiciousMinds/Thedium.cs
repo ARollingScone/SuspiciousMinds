@@ -1,5 +1,7 @@
-﻿using SuspiciousMinds.Base;
+﻿using SFML.System;
+using SuspiciousMinds.Base;
 using SuspiciousMinds.Base.Interfaces;
+using SuspiciousMinds.Factories;
 using System;
 
 namespace SuspiciousMinds
@@ -23,13 +25,29 @@ namespace SuspiciousMinds
             m_windowContainer.Window.Closed += Window_Closed;
             m_windowContainer.Window.KeyPressed += Window_KeyPressed;
             m_windowContainer.Window.KeyReleased += Window_KeyReleased;
+            m_windowContainer.Window.MouseMoved += Window_MouseMoved;
+
+            m_container.Entities.Add(PlayerFactory.Create());
+            m_container.Entities.Add(UIFactory.CreateCrosshair());
+        }
+
+        private void Window_MouseMoved(object sender, SFML.Window.MouseMoveEventArgs e)
+        {
+            foreach (var entity in m_container.Entities)
+            {
+                var input = entity.GetComponent<IInputComponent>();
+                if(input != null)
+                    input.MouseCoords = new Vector2f(e.X, e.Y);
+            }
         }
 
         private void Window_KeyReleased(object sender, SFML.Window.KeyEventArgs e)
         {
             foreach(var entity in m_container.Entities)
             {
-                entity.GetComponent<InputComponent>()?.SetKey(e.Code, false);
+                var input = entity.GetComponent<IInputComponent>();
+                if (input != null)
+                    input.Keys[e.Code] = false;
             }
         }
 
@@ -37,7 +55,9 @@ namespace SuspiciousMinds
         {
             foreach (var entity in m_container.Entities)
             {
-                entity.GetComponent<InputComponent>()?.SetKey(e.Code, true);
+                var input = entity.GetComponent<IInputComponent>();
+                if (input != null)
+                    input.Keys[e.Code] = true;
             }
         }
 
@@ -74,7 +94,7 @@ namespace SuspiciousMinds
         {
             foreach(var entity in m_container.Entities)
             {
-                entity.GetComponent<InputComponent>()?.Update();
+                entity.GetComponent<IInputComponent>()?.Update();
                 entity.GetComponent<PhysicsComponent>()?.Step(1.0f);
             }
         }

@@ -78,12 +78,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Entity.cs" />
-    <Compile Include="Base\InputComponent.cs" />
     <Compile Include="Base\Interfaces\IDisplayComponent.cs" />
+    <Compile Include="Base\Interfaces\IInputComponent.cs" />
     <Compile Include="Base\PhysicsComponent.cs" />
     <Compile Include="Base\Player\PixelGrid.cs" />
     <Compile Include="Base\Player\PixelGridDisplay.cs" />
+    <Compile Include="Base\Player\PlayerInput.cs" />
+    <Compile Include="Base\UI\CrosshairDisplay.cs" />
+    <Compile Include="Base\UI\CrosshairInput.cs" />
     <Compile Include="EntityContainer.cs" />
+    <Compile Include="Factories\PlayerFactory.cs" />
+    <Compile Include="Factories\UIFactory.cs" />
+    <Compile Include="Helpers\AngleHelpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Thedium.cs" />
