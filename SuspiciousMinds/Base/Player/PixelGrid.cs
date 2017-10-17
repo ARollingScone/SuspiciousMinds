@@ -8,6 +8,8 @@ namespace SuspiciousMinds.Base.Player
     {
         public Dictionary<Vector2f, Color> Grid { get; }  = new Dictionary<Vector2f, Color>();
 
+        public Vector2f Centre { get; }
+
         public PixelGrid(Color baseColour)
         {
             for (var i = 0; i < 9; i++)
@@ -22,6 +24,8 @@ namespace SuspiciousMinds.Base.Player
                         Grid[new Vector2f(i, j)] = baseColour;
                 }
             }
+
+            Centre = new Vector2f(4, 6.5f);
         }
     }
 }

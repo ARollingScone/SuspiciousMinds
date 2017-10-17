@@ -2,6 +2,7 @@
 using System;
 using SFML.Graphics;
 using SFML.System;
+using SuspiciousMinds.Helpers;
 
 namespace SuspiciousMinds.Base.Player
 {
@@ -21,15 +22,25 @@ namespace SuspiciousMinds.Base.Player
 
         public void Draw(RenderTarget target)
         {
-            var position = m_physicsComponent.Position;
+            const int size = 5;
 
-            foreach(var key in m_pixelGrid.Grid.Keys)
+            var centre = m_physicsComponent.Position + (m_pixelGrid.Centre * size);
+
+            var rotation = AngleHelpers.GetRotation(
+                centre,
+                m_physicsComponent.Facing);
+
+            rotation += AngleHelpers.ToRadians(90);
+
+
+            foreach (var key in m_pixelGrid.Grid.Keys)
             {
-                const int size = 5;
+                var pixelPosition = m_physicsComponent.Position + (key * size);
+                var rotatedPosition = AngleHelpers.Rotate(pixelPosition - centre, rotation) + centre;
 
                 var shape = new RectangleShape(new Vector2f(size, size))
                 {
-                    Position = m_physicsComponent.Position + (key * size),
+                    Position = rotatedPosition,
                     FillColor = Color.Black,
                     OutlineColor = m_pixelGrid.Grid[key],
                     OutlineThickness = 1
