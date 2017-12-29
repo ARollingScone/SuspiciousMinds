@@ -1,6 +1,5 @@
 ﻿using SuspiciousMinds.Base;
 using SuspiciousMinds.Base.Interfaces;
-using SuspiciousMinds.Base.Player;
 using SuspiciousMinds.Base.UI;
 using System;
 using System.Collections.Generic;
@@ -16,10 +15,10 @@ namespace SuspiciousMinds.Factories
 
             return new Entity
             {
-                Components = new Dictionary<Type, object>
+                Components = new Dictionary<Type, List<object>>
                 {
-                    {typeof(IDisplayComponent), display },
-                    {typeof(IInputComponent), input }
+                    {typeof(IDisplayComponent), new List<object>(){ display } },
+                    {typeof(IInputComponent), new List<object>(){ input } }
                 }
             };
         }

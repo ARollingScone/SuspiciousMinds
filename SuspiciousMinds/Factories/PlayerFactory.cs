@@ -11,6 +11,7 @@ namespace SuspiciousMinds.Factories
         {
             var entity = new Entity();
 
+
             var physics = new PhysicsComponent();
             var input = new PlayerInput();
 
@@ -18,11 +19,15 @@ namespace SuspiciousMinds.Factories
                 new PixelGrid(Color.Green),
                 physics);
 
-            input.SetPhysics(physics);
+            var hitscanGun = new PlayerHitscanGun(physics);
 
-            entity.Components.Add(typeof(PhysicsComponent), physics);
-            entity.Components.Add(typeof(IInputComponent), input);
-            entity.Components.Add(typeof(IDisplayComponent), display);
+            input.SetPhysics(physics);
+            input.SetGun(hitscanGun);
+
+            entity.AddComponent<IStepComponent>(hitscanGun);
+            entity.AddComponent<IStepComponent>(physics);
+            entity.AddComponent<IInputComponent>(input);
+            entity.AddComponent<IDisplayComponent>(display);
 
             return entity;
         }

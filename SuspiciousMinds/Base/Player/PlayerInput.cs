@@ -2,12 +2,14 @@
 using SuspiciousMinds.Base.Interfaces;
 using System.Collections.Generic;
 using static SFML.Window.Keyboard;
+using static SFML.Window.Mouse;
 
 namespace SuspiciousMinds.Base.Player
 {
     public class PlayerInput : IInputComponent
     {
         private PhysicsComponent m_physicsComponent;
+        private PlayerHitscanGun m_hitscanGun;
 
         public Vector2f MouseCoords { get; set; } = new Vector2f();
 
@@ -19,14 +21,21 @@ namespace SuspiciousMinds.Base.Player
             { Key.D, false }
         };
 
+        public Dictionary<Button, bool> MouseButtons { get; } = new Dictionary<Button, bool>
+        {
+            { Button.Left, false },
+            { Button.Right, false },
+            { Button.Middle, false }
+        };
+
         public void SetPhysics(PhysicsComponent component)
         {
             m_physicsComponent = component;
         }
 
-        public void SetKey(Key key, bool state)
+        public void SetGun(PlayerHitscanGun gun)
         {
-            Keys[key] = state;
+            m_hitscanGun = gun;
         }
 
         public void Update()
@@ -51,6 +60,9 @@ namespace SuspiciousMinds.Base.Player
 
             m_physicsComponent.Acceleration = new Vector2f(0.01f * x, 0.01f * y);
             m_physicsComponent.Facing = MouseCoords;
+
+            // Update Gun
+            m_hitscanGun.SetIsFiring(MouseButtons[Button.Left], MouseCoords);
         }
     }
 }

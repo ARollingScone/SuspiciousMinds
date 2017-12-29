@@ -80,9 +80,11 @@
     <Compile Include="Base\Entity.cs" />
     <Compile Include="Base\Interfaces\IDisplayComponent.cs" />
     <Compile Include="Base\Interfaces\IInputComponent.cs" />
+    <Compile Include="Base\Interfaces\IStepComponent.cs" />
     <Compile Include="Base\PhysicsComponent.cs" />
     <Compile Include="Base\Player\PixelGrid.cs" />
     <Compile Include="Base\Player\PixelGridDisplay.cs" />
+    <Compile Include="Base\Player\PlayerHitscanGun.cs" />
     <Compile Include="Base\Player\PlayerInput.cs" />
     <Compile Include="Base\UI\CrosshairDisplay.cs" />
     <Compile Include="Base\UI\CrosshairInput.cs" />

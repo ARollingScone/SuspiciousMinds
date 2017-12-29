@@ -1,5 +1,4 @@
 ﻿using SFML.System;
-using SuspiciousMinds.Base;
 using SuspiciousMinds.Base.Interfaces;
 using SuspiciousMinds.Factories;
 using System;
@@ -26,17 +25,36 @@ namespace SuspiciousMinds
             m_windowContainer.Window.KeyPressed += Window_KeyPressed;
             m_windowContainer.Window.KeyReleased += Window_KeyReleased;
             m_windowContainer.Window.MouseMoved += Window_MouseMoved;
+            m_windowContainer.Window.MouseButtonPressed += Window_MouseButtonPressed;
+            m_windowContainer.Window.MouseButtonReleased += Window_MouseButtonReleased;
 
             m_container.Entities.Add(PlayerFactory.Create());
             m_container.Entities.Add(UIFactory.CreateCrosshair());
+        }
+
+        private void Window_MouseButtonReleased(object sender, SFML.Window.MouseButtonEventArgs e)
+        {
+            foreach (var entity in m_container.Entities)
+            {
+                foreach (var input in entity.GetComponents<IInputComponent>())
+                    input.MouseButtons[e.Button] = false;
+            }
+        }
+
+        private void Window_MouseButtonPressed(object sender, SFML.Window.MouseButtonEventArgs e)
+        {
+            foreach (var entity in m_container.Entities)
+            {
+                foreach (var input in entity.GetComponents<IInputComponent>())
+                    input.MouseButtons[e.Button] = true;
+            }
         }
 
         private void Window_MouseMoved(object sender, SFML.Window.MouseMoveEventArgs e)
         {
             foreach (var entity in m_container.Entities)
             {
-                var input = entity.GetComponent<IInputComponent>();
-                if(input != null)
+                foreach (var input in entity.GetComponents<IInputComponent>())
                     input.MouseCoords = new Vector2f(e.X, e.Y);
             }
         }
@@ -45,8 +63,7 @@ namespace SuspiciousMinds
         {
             foreach(var entity in m_container.Entities)
             {
-                var input = entity.GetComponent<IInputComponent>();
-                if (input != null)
+                foreach (var input in entity.GetComponents<IInputComponent>())
                     input.Keys[e.Code] = false;
             }
         }
@@ -55,8 +72,7 @@ namespace SuspiciousMinds
         {
             foreach (var entity in m_container.Entities)
             {
-                var input = entity.GetComponent<IInputComponent>();
-                if (input != null)
+                foreach (var input in entity.GetComponents<IInputComponent>())
                     input.Keys[e.Code] = true;
             }
         }
@@ -94,8 +110,11 @@ namespace SuspiciousMinds
         {
             foreach(var entity in m_container.Entities)
             {
-                entity.GetComponent<IInputComponent>()?.Update();
-                entity.GetComponent<PhysicsComponent>()?.Step(1.0f);
+                foreach(var input in entity.GetComponents<IInputComponent>())
+                    input.Update();
+
+                foreach(var stepper in entity.GetComponents<IStepComponent>())
+                    stepper.Step(1.0f);
             }
         }
 
@@ -109,7 +128,8 @@ namespace SuspiciousMinds
 
             foreach (var entity in m_container.Entities)
             {
-                entity.GetComponent<IDisplayComponent>()?.Draw(m_windowContainer.Window);
+                foreach(var drawer in entity.GetComponents<IDisplayComponent>())
+                    drawer.Draw(m_windowContainer.Window);
             }
 
             m_windowContainer.Window.Display();

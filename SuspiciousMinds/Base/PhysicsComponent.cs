@@ -1,8 +1,9 @@
 ﻿using SFML.System;
+using SuspiciousMinds.Base.Interfaces;
 
 namespace SuspiciousMinds.Base
 {
-    public class PhysicsComponent
+    public class PhysicsComponent : IStepComponent
     {
         private Vector2f m_velocity;
 
